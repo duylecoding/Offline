@@ -1,12 +1,18 @@
-const express = require('express');
-
+const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
+require("dotenv/config");
 
-//routes
+const testRoutes = require("./test/test");
 
-app.get('/', (req, res) =>{
-    res.send('Hello world');
-});
+app.use("/test", testRoutes);
 
+mongoose.connect(
+    process.env.DB_CONNECTION_STRING,
+    { useNewUrlParser: true },
+    () => {
+        console.log("connected to db");
+    }
+);
 
 app.listen(8080);
