@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Test = require('../models/testModels')
+const Test = require('../models/test')
 
 router.get('/', (req, res) =>{
     res.send('Hello world');
