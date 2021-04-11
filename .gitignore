@@ -6,14 +6,10 @@ bin-release/
 
 # Other files and folders
 .settings/
-**/node_modules
-node_modules/
-/node_modules
 api/node_modules
 web/node_modules
 .env/
 /api/.env
-node_modules
 .env
 
 # Executables
