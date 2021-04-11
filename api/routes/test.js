@@ -2,18 +2,33 @@ const express = require('express');
 const router = express.Router();
 const Test = require('../models/test')
 
-router.get('/', (req, res) =>{
-    res.send('Hello world');
+// gets all tests
+router.get('/', async (req, res) => {
+    try {
+        const posts = await Test.find();
+        res.json(posts);
+    } catch(err) {
+    }
 });
 
-router.post('/', (req, res) => {
+//gets one post
+router.get('/:testId', async (req, res) => {
+    const result = await Test.findById(req.params.testId);
+    res.json(result);
+})
+
+router.post('/', async (req, res) => {
     const post = new Test({ 
-        id: req.body.title,
         name: req.body.name
     });
-    post.save().exec().then(data => {
-        res.json(data);
-    });
+    const savedTest = await post.save();
+    res.json(savedTest);
+});
+
+//delete
+router.delete('/:testId', async (req, res) => {
+    await Test.remove({ _id: req.params.testId });
+    res.json({ response: "OK" });
 });
 
 module.exports = router;

@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const TestSchema = mongoose.Schema({
-    id: {
-        type: Number,
-        required: true
-    },
     name: {
         type: String,
         required: false
